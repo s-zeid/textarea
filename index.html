@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <!--
+   Text Area
+   A simple Web-based scratchpad.
+   Copyright (c) 2009-2019 S. Zeid.  Released under the X11 License.
+   https://textarea.s.zeid.me/
+  -->
+  <title>Text Area</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABDlBMVEUAAABVVVVJSUlAQEA5OTlNTU1HR0dFRUVCQkJAQEBGRkZFRUVERERFRUVERERDQ0NCQkJDQ0NFRUVERERERERDQ0NFRUVDQ0NERERERERERERFRUVERERDQ0NERERERERERERDQ0NERERERERFRUVERERERERERERERERERERFRUVERERERERERERERERERERERERERERERERERERERERISEhJSUlOTk5PT09QUFBSUlJkZGRlZWVmZmZvb29wcHB+fn5/f3+AgICDg4OsrKytra2urq6vr6+xsbGysrKzs7O0tLTQ0NDR0dHS0tLf39/g4ODh4eHi4uLq6ur19fX29vb39/f9/f3+/v7///9HYR34AAAANHRSTlMABgcICQoZGhscHTAxRkdISYGCg4SFhpSVlpeYmb2+v8DBxsjJzc7X2Nnj5OXm8PHy8/T1ReIfbAAAAehJREFUWMPtl1lPwkAUhQ+gFEXEBUVARVxxF6hUZBFcEFAEqwj9/3/EB2faCthZGhONnqfpcr5kZm5uzgVMecOxVDqrMpRNp1bCXowqsHqmcussoQzZJ5ZzqpByEZ/dr2yrwtqdtvwzR6qEDoPU7z9QpXQ89eH3bauS2pkEACyr0loEgIB1/uX75zeDobduvWwVhQJglT7lWwODS4NWnnrigJfWT/7J4FabEk49mKOwB0NATeqaRZzufyAC6BeJbQUpsro3hFQntnXsk9WzGKBLbGlkyKonBugRWwb0NMxPelX7qm60mm7+Rt+NAPSCU+kVdCag6ly810yA5gzQ3AIumICaM+DG5SFevjABhl77+hpvXtjXyKu/C6hUXAKs/34yYKgf2HsAF2C0lAu6EKDq0AO4AJpDD5AFXAgBag49QPIQrR7AeY2f+4G9B/yWSvxeQOXqv6WNAUgGjFca02QjTseMOBtkVRcD3BLbGmJkVZKLeVGE6Wm0RAAN6grZom6b3/9Io+6JB0iYYbvJuYt+45x6YgAUK+6X6h1m3O917opW3PcDwJL8wDH/MfJsyfo3vS6HrgAd24Iuxz5AkdjFzrR9dPVFsmL27IJvaHpW4qf89pOYf8z87pmNJvcyLG9mLxkNeSzXO5hyGfsxNvaeAAAAAElFTkSuQmCC" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700,700italic,300italic,300" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic" />
+  <style>
+   html { margin: 0; padding: 0; height: 100%; }
+   body {
+    margin: 0; padding: 0; overflow: hidden; height: 100%;
+    font-family: "Ubuntu", "Droid Sans", "Trebuchet MS", sans-serif;
+   }
+   a { color: #008; text-decoration: none; }
+   h1 { font-weight: normal; margin-top: 0; }
+   #form, #textarea {
+    width: 100%; height: 100%; padding: 0; margin: 0; border-style: none;
+    font-family: "Ubuntu Mono", "Droid Sans Mono", "Consolas",
+                 "Courier New", "Courier", monospace;
+    resize: none;
+   }
+   #info {
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: table;
+    width: 100%; height: 100%; cursor: text;
+   }
+    #info > div { display: table-row; }
+     #info > div > div {
+      display: table-cell; vertical-align: middle; text-align: center;
+      padding: 0 4em; font-size: small;
+     }
+   #footer { font-size: x-small; opacity: 0.5; }
+  </style>
+ </head>
+ <body>
+  <form id="form" action="#" method="get">
+   <textarea id="textarea"></textarea>
+  </form>
+  <div id="info">
+   <div>
+    <div>
+     <h1>
+      <a href="https://textarea.s.zeid.me/">Text Area</a>
+     </h1>
+     <p>
+      This is a simple Web-based scratchpad.&nbsp;
+      <!--[if !IE]>-->
+       <a id="bookmarklet" href="javascript:;">
+        It is also available as a bookmarklet.
+       </a>
+      <!--<![endif]-->
+      <!--[if IE]>
+       It is also available as a bookmarklet in browsers other than
+       Internet Explorer.
+      <![endif]-->
+     </p>
+     <p>
+      This message will disappear when you start typing or when you click
+      in the text area.
+     </p>
+     <p id="footer">
+      Copyright &copy; 2009&ndash;2019
+      <a href="https://s.zeid.me/">S. Zeid</a>.&nbsp;
+      Released under the X11 License.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   var textarea = document.getElementById("textarea");
+   function getBookmarkletURL() {
+    var url = "data:text/html,<!DOCTYPE html>\n<html>\n ";
+    url += document.getElementsByTagName("head")[0].outerHTML+"\n <body>";
+    url += document.body.innerHTML.replace(/[\n ]+$/gm, "");
+    url += "\n </body>\n</html>";
+    url = url.replace(/\xC2\xA9|\u00A9/gi, "&copy;");
+    url = url.replace(/#/g, "\x2523");
+    url = url.replace(/&/g, "\x2526");
+    return url.replace(/\x0D\x0A|\x0D|\x0A/g, "\x250A");
+   }
+   function hideInfo(force) {
+    if (force !== true && !textarea.value) return;
+    document.getElementById("info").style.display = "none";
+    textarea.focus();
+    textarea.onkeyup = undefined;
+    textarea.oninput = undefined;
+    document.body.onclick = undefined;
+   }
+   window.onload = function() {
+    var bookmarklet = document.getElementById("bookmarklet");
+    if (bookmarklet)
+     bookmarklet.setAttribute("href", getBookmarkletURL());
+    textarea.onkeyup = hideInfo;
+    textarea.oninput = hideInfo;
+    document.body.onclick = function() { hideInfo(!0); };
+    textarea.focus();
+    hideInfo();
+   };
+   textarea.focus();
+  </script>
+ </body>
+</html>
