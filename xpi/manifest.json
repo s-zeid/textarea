@@ -1,0 +1,47 @@
+{
+ "manifest_version": 2,
+ "name": "Text Area",
+ "version": "0.1",
+ "author": "S. Zeid",
+ "description": "A simple scratchpad sidebar (and TST subpanel).",
+ 
+ "permissions": ["storage"],
+ 
+ "icons": {
+  "16": "/textarea/favicon.svg"
+ },
+ 
+ "background": {
+  "page": "/background/main.html"
+ },
+ 
+ "browser_action": {
+  "default_icon": "/textarea/favicon.svg"
+ },
+ 
+ "commands": {
+  "_execute_sidebar_action": {
+   "suggested_key": {
+    "default": "Alt+Shift+A"
+   }
+  }
+ },
+ 
+ "sidebar_action": {
+  "default_panel": "/sidebar/main.html",
+  "default_icon": "/textarea/favicon.svg",
+  "open_at_install": true
+ },
+ 
+ "options_ui": {
+  "page": "/options/main.html",
+  "browser_style": true
+ },
+ 
+ "applications": {
+  "gecko": {
+   "id": "sidebar.xpi@textarea.s.zeid.me",
+   "strict_min_version": "65.0"
+  }
+ }
+}

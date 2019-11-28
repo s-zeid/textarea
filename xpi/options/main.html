@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <script type="module" src="main.js"></script>
+  <style>
+   label:before, button:before { content: ""; display: block; }
+   textarea { display: block; width: 100%; height: 100px; }
+  </style>
+ </head>
+ <body>
+  <script id="defaults" type="application/json">
+   {
+    "showInfo": true,
+    "enableSubpanel": true
+   }
+  </script>
+  <form>
+   <p>
+    <label for="showInfo">Show info text when the sidebar is opened?</label>
+    <input id="showInfo" type="checkbox" />
+   </p>
+   <p>
+    <label for="enableSubpanel">Enable Tree Style Tab subpanel?</label>
+    <input id="enableSubpanel" type="checkbox" />
+   </p>
+   <p>
+    <label for="sidebarCSS">Custom CSS:</label>
+    <textarea id="sidebarCSS"></textarea>
+   </p>
+   <p>
+    <label for="subpanelCSS">TST subpanel CSS:</label>
+    <textarea id="subpanelCSS"></textarea>
+   </p>
+   <p>
+    <button type="submit" disabled>Save</button>
+   </p>
+  </form>
+ </body>
+</html>
