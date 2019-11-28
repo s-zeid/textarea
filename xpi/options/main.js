@@ -83,7 +83,7 @@ function set(el, value) {
 let defaults = {};
 
 window.addEventListener("DOMContentLoaded", () => {
- defaults = JSON.parse(id("defaults").innerHTML);
+ defaults = JSON.parse(id("defaults").textContent);
  
  load();
  

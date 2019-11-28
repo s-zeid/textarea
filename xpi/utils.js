@@ -13,10 +13,10 @@ export async function getOption(key, defaultValue) {
 }
 
 
-export function setHTMLFromOption(el, key, defaultValue) {
+export function setTextFromOption(el, key, defaultValue) {
  getOption(key, defaultValue).then(value => {
   if (value !== undefined)
-   el.innerHTML = value;
+   el.textContent = value;
  });
 }
 
@@ -31,12 +31,12 @@ export function addCustomCSSElement(doc, connection, id) {
  function listener(message, sender) {
   switch (message.type) {
    case "options-saved":
-    setHTMLFromOption(el, id + "CSS");
+    setTextFromOption(el, id + "CSS");
     break;
   }
  }
  connection.onMessage.addListener(listener);
- setHTMLFromOption(el, id + "CSS");
+ setTextFromOption(el, id + "CSS");
  
  return el;
 }
