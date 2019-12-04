@@ -18,7 +18,7 @@ async function registerSubPanel() {
    listeningTypes: ["wait-for-shutdown"],
    subPanel: {
     title: browser.runtime.getManifest().name,
-    url: `moz-extension://${location.host}/subpanel/main.html`
+    url: `moz-extension://${location.host}/iframe/main.html?ui-location=subpanel`
    }
   });
   subpanelRegistered = true;
