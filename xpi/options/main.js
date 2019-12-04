@@ -1,12 +1,14 @@
+import * as Utils from "/utils.js";
+
+
 function id(s) {
  return document.getElementById(s);
 }
 
 
 function load() {
- return browser.storage.sync.get("options").then(
-  (result) => {
-   let options = result.options;
+ return Utils.getOptions().then(
+  (options) => {
    for (var el of document.querySelectorAll("form [id]")) {
     if (options[el.id] !== undefined)
      set(el, options[el.id]);
