@@ -79,6 +79,20 @@ function set(el, value) {
 }
 
 
+function autoResizeTextarea(el, max) {
+ function listener() {
+  el.style.height = "auto";
+  
+  let height = Math.min(el.scrollHeight + window.devicePixelRatio, max || Infinity);
+  el.style.height = `${height}px`;
+  el.style.overflowY = (height == max) ? "auto" : "hidden";
+ }
+ 
+ el.addEventListener("input", listener);
+ listener();
+}
+
+
 let defaults = {};
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -91,5 +105,10 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   
   document.querySelector("button[type='submit']").disabled = false;
+  
+  for (let el of document.querySelectorAll("textarea")) {
+   el.style.setProperty("--computed-line-height", window.getComputedStyle(el).lineHeight);
+   autoResizeTextarea(el, 300);
+  }
  });
 });
