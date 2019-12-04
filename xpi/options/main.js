@@ -111,6 +111,11 @@ window.addEventListener("DOMContentLoaded", () => {
   for (let el of document.querySelectorAll("textarea")) {
    el.style.setProperty("--computed-line-height", window.getComputedStyle(el).lineHeight);
    autoResizeTextarea(el, 300);
+   
+   el.addEventListener("keyup", e => {
+    if (e.ctrlKey && e.code.match(/^(Numpad)?Enter$/))
+     save();
+   });
   }
  });
 });
