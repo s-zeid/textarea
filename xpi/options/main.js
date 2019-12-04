@@ -4,7 +4,7 @@ function id(s) {
 
 
 function load() {
- browser.storage.sync.get("options").then(
+ return browser.storage.sync.get("options").then(
   (result) => {
    let options = result.options;
    for (var el of document.querySelectorAll("form [id]")) {
@@ -30,11 +30,10 @@ function load() {
 function save() {
  let options = {};
  
- for (var el of document.querySelectorAll("form [id]")) {
+ for (var el of document.querySelectorAll("form [id]"))
   options[el.id] = get(el);
- }
  
- browser.storage.sync.set({options: options}).then(() => {
+ return browser.storage.sync.set({options: options}).then(() => {
   browser.runtime.sendMessage({"type": "options-saved"});
  });
 }
@@ -85,12 +84,12 @@ let defaults = {};
 window.addEventListener("DOMContentLoaded", () => {
  defaults = JSON.parse(id("defaults").textContent);
  
- load();
- 
- document.querySelector("form").addEventListener("submit", e => {
-  e.preventDefault();
-  save();
+ load().then(() => {
+  document.querySelector("form").addEventListener("submit", e => {
+   e.preventDefault();
+   save();
+  });
+  
+  document.querySelector("button[type='submit']").disabled = false;
  });
- 
- document.querySelector("button[type='submit']").disabled = false;
 });
