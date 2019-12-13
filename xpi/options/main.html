@@ -4,11 +4,16 @@
   <meta charset="utf-8" />
   <script type="module" src="main.js"></script>
   <style>
+   section { margin: 1em 0; }
    label:before, button:before { content: ""; display: block; }
    textarea {
     display: block; width: 100%;
     line-height: 1.25; min-height: calc(var(--computed-line-height) * 3 + 1px);
    }
+   details > ul { margin: 0; }
+   details code { user-select: all; }
+   details code i { user-select: none; opacity: 0.5; }
+   details i code i { opacity: 1; font-style: normal; }
   </style>
  </head>
  <body>
@@ -19,21 +24,37 @@
    }
   </script>
   <form>
-   <p>
+   <section>
     <label for="showInfo">Show info text when the sidebar is opened?</label>
     <input id="showInfo" type="checkbox" />
-   </p>
-   <p>
+   </section>
+   <section>
     <label for="enableSubpanel">Enable Tree Style Tab subpanel?</label>
     <input id="enableSubpanel" type="checkbox" />
-   </p>
-   <p>
+   </section>
+   <section>
     <label for="iframeCSS">Custom CSS:</label>
     <textarea id="iframeCSS"></textarea>
-   </p>
-   <p>
+    <details>
+     <summary>CSS help</summary>
+     <i>(Click on any code sample in <code><i>monospace</i></code> to select it.)</i>
+     <ul>
+      <li>The text area can be selected as <code>textarea</code>.</li>
+      <li>To select an empty text area, use <code>textarea:placeholder-shown</code>.</li>
+      <li>
+       To select one type of text area, use
+       <code>textarea.<i>ui-location</i></code>
+        or
+       <code>:root.<i>ui-location</i></code>
+       with one of the following UI locations after the dot:
+       <code>sidebar</code>, <code>subpanel</code>
+      </li>
+     </ul>
+    </details>
+   </section>
+   <section>
     <button type="submit" disabled>Save</button>
-   </p>
+   </section>
   </form>
  </body>
 </html>
