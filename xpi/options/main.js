@@ -87,7 +87,7 @@ function autoResizeTextarea(el, max) {
   
   let height = Math.min(el.scrollHeight + window.devicePixelRatio, max || Infinity);
   el.style.height = `${height}px`;
-  el.style.overflowY = (height == max) ? "auto" : "hidden";
+  el.style.overflowY = (height >= max) ? "auto" : "hidden";
  }
  
  el.addEventListener("input", listener);
