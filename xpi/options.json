@@ -1,0 +1,47 @@
+{
+ {
+  "id": "buttonUILocation",
+  "type": "select",
+  "default": "window",
+  "options": {
+   "window": "Window",
+   "tab": "Tab",
+   "sidebar": "Sidebar"
+  },
+  "label": "Toolbar button opens the text area in a..."
+ },
+ {
+  "id": "showInfo",
+  "type": "checkbox",
+  "default": true,
+  "label": "Show info text when the sidebar is opened?"
+ },
+ {
+  "id": "enableSubpanel",
+  "type": "checkbox",
+  "default": true,
+  "label": "Enable Tree Style Tab subpanel?"
+ },
+ {
+  "id": "iframeCSS",
+  "type": "textarea",
+  "default": "",
+  "label": "Custom CSS:",
+  "helpSummary": "CSS help",
+  "helpDetails": [
+   "<i>(Click on any code sample in <code><i>monospace</i></code> to select it.)</i>",
+   "<ul>",
+   " <li>The text area can be selected as <code>textarea</code>.</li>",
+   " <li>To select an empty text area, use <code>textarea:placeholder-shown</code>.</li>",
+   " <li>",
+   "  To select one type of text area, use",
+   "  <code>textarea.<i>ui-location</i></code>",
+   "   or",
+   "  <code>:root.<i>ui-location</i></code>",
+   "  with one of the following UI locations after the dot:",
+   "  <code>sidebar</code>, <code>subpanel</code>, <code>tab</code>, <code>window</code>",
+   " </li>",
+   "</ul>"
+  ]
+ }
+}

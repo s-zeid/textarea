@@ -6,16 +6,18 @@ const UI_LOCATION = new URLSearchParams(location.search).get("ui-location") || "
 const TextareaLoadedEvent = new Event("textareaLoaded");
 
 
-function main(e) {
+async function main(e) {
  let connection = browser.runtime.connect({name: `textarea.${UI_LOCATION}:${Date.now()}`});
  
  let iframe = e.target;
  let iwin = iframe.contentWindow;
  let idoc = iframe.contentDocument;
- let iroot = idoc.documentElement;
  
- iroot.classList.add(UI_LOCATION);
- iroot.querySelector("textarea").classList.add(UI_LOCATION);
+ let root = idoc.documentElement;
+ let textarea = idoc.querySelector("textarea");
+ 
+ root.classList.add(UI_LOCATION);
+ textarea.classList.add(UI_LOCATION);
  
  addCustomCSSElement(idoc, "iframe");
  connection.onMessage.addListener((message, sender) => {
@@ -37,12 +39,40 @@ function main(e) {
   idoc.querySelector("#info > div > div").style.padding = "0 0";
  }
  
- Utils.getOption("showInfo").then(showInfo => {
-  if (showInfo === false)
-   iwin.hideInfo(true);
-  
-  idoc.dispatchEvent(TextareaLoadedEvent);
+ if (await Utils.getOption("showInfo") === false)
+  iwin.hideInfo(true);
+ 
+ let tabId = null, windowId = null;
+ if (browser.tabs) {
+  let tab = await browser.tabs.getCurrent();
+  if (tab)
+   tabId = tab.id;
+ }
+ if (browser.windows)
+  windowId = (await browser.windows.getCurrent()).id;
+ 
+ await connection.postMessage({
+  type: "register",
+  ids: {tab: tabId, window: windowId},
+  uiLocation: UI_LOCATION,
+  isPrivate: browser.extension.inIncognitoContext,
  });
+ 
+ connection.onMessage.addListener((message, sender, x) => {
+  switch (message.type) {
+   case "get-value":
+    connection.postMessage({
+     type: "value",
+     value: textarea.value
+    });
+    break;
+   case "set-value":
+    textarea.value = message.value;
+    break;
+  }
+ });
+ 
+ idoc.dispatchEvent(TextareaLoadedEvent);
 }
 
 
@@ -64,4 +94,4 @@ function addCustomCSSElement(doc, uiLocation) {
 }
 
 
-document.querySelector("iframe").addEventListener("load", main);
+document.querySelector("iframe").addEventListener("load", e => main(e));

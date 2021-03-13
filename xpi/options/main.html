@@ -13,7 +13,7 @@
    details > ul { margin: 0; }
    details code { user-select: all; }
    details code i { user-select: none; opacity: 0.5; }
-   details i code i { opacity: 1; font-style: normal; }
+   details i code { opacity: 1; font-style: normal; }
   </style>
  </head>
  <body>
@@ -37,7 +37,7 @@
     <textarea id="iframeCSS"></textarea>
     <details>
      <summary>CSS help</summary>
-     <i>(Click on any code sample in <code><i>monospace</i></code> to select it.)</i>
+     <i>(Click on any code sample in <code>monospace</code> to select it.)</i>
      <ul>
       <li>The text area can be selected as <code>textarea</code>.</li>
       <li>To select an empty text area, use <code>textarea:placeholder-shown</code>.</li>
@@ -48,6 +48,11 @@
        <code>:root.<i>ui-location</i></code>
        with one of the following UI locations after the dot:
        <code>sidebar</code>, <code>subpanel</code>
+      </li>
+      <li>
+       For general CSS help, see <abbr title="Mozilla Developer Network">MDN</abbr>'s
+       <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps">CSS guide</a>
+       and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">reference</a>.
       </li>
      </ul>
     </details>

@@ -20,10 +20,20 @@
  },
  
  "commands": {
-  "_execute_sidebar_action": {
+  "_execute_browser_action": {
    "suggested_key": {
     "default": "Alt+Shift+A"
-   }
+   },
+   "description": "Open in the default location (see options)"
+  },
+  "open-tab": {
+   "description": "Open in a new tab"
+  },
+  "open-window": {
+   "description": "Open in a popup window"
+  },
+  "open-sidebar": {
+   "description": "Open as a sidebar"
   }
  },
  
