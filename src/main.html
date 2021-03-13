@@ -15,18 +15,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700,700italic,300italic,300" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic" />
   <style>
-   html { margin: 0; padding: 0; height: 100%; }
+   html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: "Ubuntu", "Droid Sans", "Trebuchet MS", sans-serif;
+   }
    body {
     margin: 0; padding: 0; overflow: hidden; height: 100%;
-    font-family: "Ubuntu", "Droid Sans", "Trebuchet MS", sans-serif;
    }
    a { color: #008; text-decoration: none; }
    h1 { font-weight: normal; margin-top: 0; }
    #textarea {
     width: 100%; height: 100%; padding: 0; margin: 0; border-style: none;
+    font-size: 1.125em; resize: none; padding: 0.25em; box-sizing: border-box;
     font-family: "Ubuntu Mono", "Droid Sans Mono", "Consolas",
                  "Courier New", "Courier", monospace;
-    resize: none;
    }
    #info {
     position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: table;
@@ -35,9 +37,9 @@
     #info > div { display: table-row; }
      #info > div > div {
       display: table-cell; vertical-align: middle; text-align: center;
-      padding: 0 4em; font-size: small;
+      padding: 0 4em;
      }
-   #footer { font-size: x-small; opacity: 0.5; }
+   #footer { font-size: smaller; opacity: 0.5; }
   </style>
  </head>
  <body>
