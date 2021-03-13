@@ -1,7 +1,7 @@
 Text Area
 A simple Web-based scratchpad.
 
-Copyright (c) 2009-2020 S. Zeid.  Some rights reserved.
+Copyright (c) 2009-2021 S. Zeid.  Some rights reserved.
 https://code.s.zeid.me/textarea
 
 
